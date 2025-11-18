@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sistemas Distribuídos — Resumo Completo</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <i class="bi bi-diagram-3 me-2 fs-4 text-python"></i>
+          <span class="fw-bold">Sistemas Distribuídos</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMain"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMain">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#unidade-1">Unidade 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#unidade-2">Unidade 2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#unidade-3">Unidade 3</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#unidade-4">Unidade 4</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./pages/conteudo-adicional.html"
+                >Conteudo Adicional</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="https://alfredo-allan.github.io/Sistema-Distribu-do-RMI/index.html"
+                >Sistema Distribuído RPC - Python
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="bg-dark py-5 mb-5"></header>
+
+    <!-- UNIDADE 1 -->
+    <section id="unidade-1" class="py-5">
+      <div class="container">
+        <h2 class="section-title text-python fw-bold mb-4">
+          Unidade 1 — Conceitos e Arquiteturas
+        </h2>
+
+        <div class="card p-4 mb-4 explanation-card">
+          <h4 class="fw-bold mb-3">Teoria Rápida e Conceitos Fundamentais</h4>
+          <p>
+            Um Sistema Distribuído é uma coleção de computadores independentes
+            interligados via rede, que para o usuário, aparenta funcionar como
+            um único sistema. Eles podem ter hardwares e sistemas operacionais
+            diferentes, mas trabalham juntos.
+          </p>
+          <p>
+            O elemento central é o <strong>Middleware</strong>, a camada que
+            fica entre o software e o sistema operacional, responsável por
+            gerenciar comunicação, dados e abstrações.
+          </p>
+          <p>
+            Os principais objetivos incluem: ocultar a distribuição dos
+            recursos, oferecer alta disponibilidade, e permitir acesso simples e
+            transparente.
+          </p>
+        </div>
+
+        <div class="card p-4 mb-4">
+          <h4 class="fw-bold mb-3">Arquiteturas Computacionais</h4>
+          <ul>
+            <li>
+              <strong>Cliente-Servidor:</strong> servidor oferece serviços;
+              clientes consomem.
+            </li>
+            <li>
+              <strong>Ponto a Ponto (P2P):</strong> todos os nós têm o mesmo
+              papel.
+            </li>
+            <li>
+              <strong>Arquitetura Descentralizada:</strong> híbrido de
+              Cliente-Servidor e P2P, usada em blockchains.
+            </li>
+          </ul>
+        </div>
+
+        <div class="card p-4 use-case-card">
+          <h4 class="fw-bold mb-3">Casos de Uso</h4>
+          <ul>
+            <li>
+              <strong>Ocultação da Complexidade:</strong> vários servidores
+              agindo como um.
+            </li>
+            <li>
+              <strong>Confiabilidade:</strong> servidores assumem carga se um
+              falhar.
+            </li>
+            <li>
+              <strong>Sistemas Fracamente Acoplados:</strong> comunicação via
+              rede, alta flexibilidade.
+            </li>
+            <li>
+              <strong>Middleware:</strong> integra camadas de Aplicação,
+              Middleware e SO.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIDADE 2 -->
+    <section id="unidade-2" class="py-5">
+      <div class="container">
+        <h2 class="section-title text-python fw-bold mb-4">
+          Unidade 2 — Objetivos, Desafios e Modelos
+        </h2>
+
+        <div class="card p-4 mb-4 explanation-card">
+          <h4 class="fw-bold mb-3">Teoria Rápida</h4>
+          <p>Os três objetivos principais são:</p>
+          <ul>
+            <li><strong>Compartilhamento de Recursos</strong></li>
+            <li><strong>Confiabilidade (Teorema CAP)</strong></li>
+            <li><strong>Desempenho</strong></li>
+          </ul>
+        </div>
+
+        <div class="card p-4 mb-4">
+          <h4 class="fw-bold mb-3">Desafios</h4>
+          <ul>
+            <li>Abertura</li>
+            <li>Concorrência</li>
+            <li>Escalabilidade</li>
+            <li>Resiliência / Tolerância a Falhas</li>
+            <li>Heterogeneidade</li>
+            <li>Transparência</li>
+          </ul>
+        </div>
+
+        <div class="card p-4 use-case-card">
+          <h4 class="fw-bold mb-3">Casos de Uso</h4>
+          <ul>
+            <li>
+              <strong>Escalabilidade Automática</strong> utilizando
+              Chef/Ansible.
+            </li>
+            <li>
+              <strong>Granularidade</strong> permitindo execução paralela
+              eficiente.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIDADE 3 -->
+    <section id="unidade-3" class="py-5">
+      <div class="container">
+        <h2 class="section-title text-python fw-bold mb-4">
+          Unidade 3 — Virtualização e Conteinerização
+        </h2>
+
+        <div class="card p-4 mb-4 explanation-card">
+          <h4 class="fw-bold mb-3">Virtualização</h4>
+          <p>
+            A Virtualização cria versões virtuais de hardware, redes e
+            armazenamento. Máquinas Virtuais permitem rodar múltiplos sistemas
+            operacionais em uma única máquina física.
+          </p>
+        </div>
+
+        <div class="card p-4 mb-4 explanation-card">
+          <h4 class="fw-bold mb-3">Conteinerização</h4>
+          <p>
+            Contêineres são leves, isolados e compartilham o kernel do SO.
+            Docker e LXD são as principais engines. Contêineres são base de
+            microsserviços e orquestração com Kubernetes e Docker Swarm.
+          </p>
+        </div>
+
+        <div class="card p-4 use-case-card">
+          <h4 class="fw-bold mb-3">Casos de Uso</h4>
+          <ul>
+            <li>Criação de VMs no VirtualBox.</li>
+            <li>Criação de cluster com Docker Swarm.</li>
+            <li>
+              Serviço Apache replicado via
+              <code>docker service create --replicas=5</code>.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIDADE 4 -->
+    <section id="unidade-4" class="py-5 mb-5">
+      <div class="container">
+        <h2 class="section-title text-python fw-bold mb-4">
+          Unidade 4 — Segurança e Comunicação
+        </h2>
+
+        <div class="card p-4 mb-4 explanation-card">
+          <h4 class="fw-bold mb-3">Segurança</h4>
+          <ul>
+            <li>Confidencialidade</li>
+            <li>Integridade</li>
+            <li>Autenticidade</li>
+            <li>Não Repúdio</li>
+          </ul>
+        </div>
+
+        <div class="card p-4 mb-4">
+          <h4 class="fw-bold mb-3">Ameaças</h4>
+          <ul>
+            <li>Leakage (Vazamento)</li>
+            <li>Tampering (Falsificação)</li>
+            <li>Vandalism (Vandalismo)</li>
+          </ul>
+        </div>
+
+        <div class="card p-4 mb-4">
+          <h4 class="fw-bold mb-3">Comunicação (Sockets)</h4>
+          <ul>
+            <li>TCP — Confiável</li>
+            <li>UDP — Rápido</li>
+            <li>Primitivas: Socket, Bind, Listen, Accept, Connect...</li>
+          </ul>
+        </div>
+
+        <div class="card p-4 use-case-card mb-4">
+          <h4 class="fw-bold mb-3">RPC / RMI</h4>
+          <ul>
+            <li>Uso de interface <code>Remote</code> em Java.</li>
+            <li>Servidor usa <code>rebind</code>.</li>
+            <li>Cliente usa <code>lookup</code>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>

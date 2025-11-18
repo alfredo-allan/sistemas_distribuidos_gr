@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Conteúdo Adicional — Sistemas Distribuídos</title>
+
+    <!-- Google Font Sora -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap (apenas utilitário) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bs-body-bg: #1e1e1e;
+        --bs-body-color: #f8f9fa;
+        --bs-dark: #2d2d30;
+        --bs-darker: #252526;
+        --bs-primary: #0d6efd;
+        --bs-success: #198754;
+        --bs-info: #0dcaf0;
+        --bs-warning: #ffc107;
+        --bs-danger: #dc3545;
+        --bs-python: #3776ab;
+      }
+
+      /* Base */
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        background-color: var(--bs-body-bg);
+        color: var(--bs-body-color);
+        font-family: "Sora", system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        line-height: 1.5;
+        padding-bottom: 60px;
+      }
+
+      .container {
+        max-width: 1100px;
+      }
+
+      /* Navbar */
+      .navbar {
+        background-color: var(--bs-darker) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      }
+      .navbar .brand-title {
+        color: var(--bs-body-color);
+        font-weight: 600;
+      }
+
+      /* Cards */
+      .card {
+        background-color: var(--bs-dark);
+        border: 1px solid #3e3e42;
+        border-radius: 10px;
+        color: var(--bs-body-color);
+      }
+
+      .section-title {
+        border-bottom: 2px solid var(--bs-python);
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .icon-container {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(55, 118, 171, 0.12);
+        margin-right: 10px;
+      }
+
+      /* Code container (dark) */
+      .code-container {
+        background-color: #1e1e1e;
+        border-radius: 6px;
+        padding: 12px;
+        font-family: "Consolas", "Courier New", monospace;
+        font-size: 14px;
+        overflow-x: auto;
+        border: 1px solid #3e3e42;
+        color: #c9d1d9;
+        white-space: pre;
+      }
+
+      pre {
+        margin: 0;
+        white-space: pre-wrap;
+        word-break: keep-all;
+      }
+
+      /* Terminal / Console styles (from your CSS) */
+      .console-line {
+        margin: 2px 0;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+      .console-info {
+        color: #17a2b8;
+      }
+      .console-success {
+        color: #28a745;
+        font-weight: bold;
+      }
+      .console-error {
+        color: #dc3545;
+      }
+      .console-warning {
+        color: #ffc107;
+      }
+      .console-system {
+        color: #6f42c1;
+        font-weight: bold;
+      }
+      .console-server {
+        color: #569cd6;
+      }
+      .console-client {
+        color: #dcdcaa;
+      }
+      .console-input {
+        color: #ce9178;
+      }
+      .console-output {
+        color: #00ff00;
+      }
+      .console-code {
+        background-color: #2d2d30;
+        padding: 8px;
+        border-radius: 4px;
+        margin: 5px 0;
+        border-left: 3px solid #007acc;
+      }
+
+      #terminalOutput {
+        height: 360px;
+        overflow-y: auto;
+        background-color: #1e1e1e;
+        border: 1px solid #3e3e42;
+        border-radius: 6px;
+        padding: 15px;
+        margin-bottom: 20px;
+      }
+
+      .file-list-container {
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      /* Syntax tokens visual */
+      .keyword {
+        color: #569cd6;
+      }
+      .string {
+        color: #ce9178;
+      }
+      .comment {
+        color: #6a9955;
+      }
+      .function {
+        color: #dcdcaa;
+      }
+      .class-name {
+        color: #4ec9b0;
+      }
+      .python-builtin {
+        color: #9cdcfe;
+      }
+
+      /* Responsive tweaks */
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 16px;
+        }
+        #terminalOutput {
+          height: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <i class="bi bi-diagram-3 me-2 fs-4 text-python"></i>
+          <span class="fw-bold">Sistemas Distribuídos</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMain"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMain">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Unidade 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Unidade 2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Unidade 3</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Unidade 4</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="https://alfredo-allan.github.io/Sistema-Distribu-do-RMI/index.html"
+                >Sistema Distribuído RPC - Python
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-4">
+      <!-- Section: sistemas_distribuidos_1_s1_ -->
+      <section id="sistemas_distribuidos_1_s1_" class="mb-5">
+        <h2 class="section-title">Sistemas Distribuídos: Conectando o Mundo</h2>
+
+        <div class="card p-4 mb-3">
+          <p>
+            <strong>Sistemas distribuídos</strong> são a base da computação
+            moderna, explicando como a maioria dos nossos dispositivos se
+            conecta e interage. O conceito é simples: um sistema distribuído é
+            uma coleção de computadores interligados por uma rede que, juntos,
+            funcionam como um sistema único e coeso.
+          </p>
+
+          <h5 class="mt-3">O Básico: Como Funciona na Prática?</h5>
+          <p>
+            Pense em algo tão comum quanto consultar a previsão do tempo. Quando
+            você abre um site de meteorologia no seu celular ou computador, seu
+            dispositivo (o cliente) se conecta a um servidor que armazena os
+            dados do clima. Esse servidor envia as informações de volta para
+            você, que as visualiza na tela. Essa interação simples é um exemplo
+            perfeito de um sistema distribuído.
+          </p>
+
+          <h5 class="mt-3">A Peça Chave: O Papel do Middleware</h5>
+          <p>
+            Para que essa comunicação aconteça, existe uma "cola" invisível que
+            conecta o cliente ao servidor: o <strong>middleware</strong>. Ele é
+            o software que faz a ponte, gerenciando a comunicação e a troca de
+            dados entre as diferentes partes do sistema.
+          </p>
+
+          <p>
+            No nosso exemplo da previsão do tempo, o protocolo
+            <strong>HTTPS</strong> é um tipo de middleware. Ele não apenas
+            garante que a comunicação seja segura (protegendo seus dados), mas
+            também é responsável por enviar a sua requisição ao servidor e
+            entregar os dados do clima de volta ao seu navegador para que a
+            página seja renderizada.
+          </p>
+
+          <h5 class="mt-3">Por que Usamos Sistemas Distribuídos?</h5>
+          <ul>
+            <li>
+              <strong>Alta Disponibilidade e Acesso Fácil:</strong> Garantir que
+              o sistema e seus recursos estejam sempre disponíveis, mesmo que
+              uma parte falhe.
+            </li>
+            <li>
+              <strong>Abertura e Escalabilidade:</strong> Facilitar a expansão,
+              permitindo que novas máquinas e recursos sejam adicionados
+              facilmente para acompanhar o crescimento do sistema.
+            </li>
+          </ul>
+
+          <h5 class="mt-3">Principais Modelos de Arquitetura</h5>
+          <ul>
+            <li>
+              <strong>Cliente-Servidor:</strong> O modelo mais comum. Nele, um
+              cliente solicita informações de um servidor, como no exemplo da
+              previsão do tempo.
+            </li>
+            <li>
+              <strong>Ponto a Ponto (P2P):</strong> Todos os computadores na
+              rede têm papéis iguais. Eles podem tanto consumir quanto oferecer
+              recursos. Redes de compartilhamento de arquivos são um exemplo
+              clássico.
+            </li>
+            <li>
+              <strong>Descentralizada:</strong> Uma abordagem mais moderna e
+              híbrida que combina as características dos modelos
+              cliente-servidor e P2P, distribuindo o processamento e a
+              comunicação de forma mais equilibrada.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section: sistemas_distribuidos_u1_s2_ (Classificação dos Sistemas) -->
+      <section id="sistemas_distribuidos_u1_s2_" class="mb-5">
+        <h2 class="section-title">
+          Unidade 1 — Seção 2: Classificação dos Sistemas
+        </h2>
+
+        <div class="card p-4 mb-3">
+          <h5>Sistemas Centralizados</h5>
+          <p>
+            Em um sistema centralizado, tudo gira em torno de uma única máquina
+            principal, como um mainframe. Pense nela como o cérebro de toda a
+            operação. Toda a informação é processada nesse único lugar, e as
+            tarefas são limitadas ao que o sistema pode fazer. A maior
+            desvantagem é que, se a máquina central apresentar um problema, todo
+            o sistema para de funcionar.
+          </p>
+          <ul>
+            <li>
+              <strong>Vantagens:</strong> Não há vantagens listadas
+              explicitamente — segurança e controle são altos por concentrar
+              tudo num único local.
+            </li>
+            <li>
+              <strong>Desvantagens:</strong> Baixa escalabilidade, produtividade
+              limitada e custo de implementação alto.
+            </li>
+          </ul>
+        </div>
+
+        <div class="card p-4 mb-3">
+          <h5>Sistemas Paralelos</h5>
+          <p>
+            Os sistemas paralelos usam múltiplos processadores ou máquinas
+            interligadas que trabalham juntas como se fossem uma só. O objetivo
+            é executar várias partes de uma mesma tarefa ao mesmo tempo para
+            acelerar o processamento.
+          </p>
+          <ul>
+            <li>
+              <strong>Vantagens:</strong> Alta escalabilidade, maior
+              produtividade e economia potencial a longo prazo.
+            </li>
+            <li>
+              <strong>Desvantagens:</strong> Gerenciamento mais complexo e
+              segurança menor comparada a sistemas centralizados.
+            </li>
+          </ul>
+
+          <h6 class="mt-3">Subdivisões de Sistemas Paralelos</h6>
+          <p>
+            Os sistemas paralelos podem ser divididos em duas categorias,
+            dependendo de como as máquinas se conectam e se comunicam.
+          </p>
+
+          <strong>1. Sistemas Fortemente Acoplados</strong>
+          <p>
+            Nesses sistemas, os processadores se comunicam através de conexões
+            internas (barramentos) e compartilham a mesma memória principal
+            (RAM). Um bom exemplo são os smartphones e notebooks com
+            processadores de múltiplos núcleos (como os octa-core). Esses
+            núcleos compartilham a mesma memória total, trabalhando juntos para
+            executar tarefas pesadas — por exemplo, treinamento de IA — de forma
+            mais rápida.
+          </p>
+
+          <strong>2. Sistemas Fracamente Acoplados</strong>
+          <p>
+            A interligação entre as máquinas acontece via rede de computadores,
+            não internamente. É a base de arquiteturas como cliente-servidor e
+            ponto a ponto. Os sistemas distribuídos se encaixam nessa categoria,
+            pois, apesar de usarem a rede para se comunicarem, as máquinas atuam
+            em conjunto, de forma integrada, para realizar uma tarefa. O nome
+            \"fracamente acoplado\" vem exatamente do fato de que a conexão é
+            feita pela rede e não pelo hardware interno.
+          </p>
+        </div>
+
+        <div class="card p-4 mb-3">
+          <h5>Demonstração em Python</h5>
+
+          <div
+            class="code-container"
+            role="region"
+            aria-label="Código de demonstração"
+          >
+            <pre><code>import time
+import threading
+import multiprocessing
+import random
+from concurrent.futures import ThreadPoolExecutor
+import os
+
+print("="*60)
+print("DEMONSTRAÇÃO: CLASSIFICAÇÃO DOS SISTEMAS")
+print("="*60)
+
+# 1. SISTEMA CENTRALIZADO
+print("\n1. SISTEMA CENTRALIZADO")
+print("-" * 30)
+
+def sistema_centralizado(tarefas):
+    """Simula um sistema centralizado - uma única máquina processa tudo"""
+    print("🖥️  Processando no mainframe central...")
+    inicio = time.time()
+
+    # Processa uma tarefa por vez (sequencial)
+    resultados = []
+    for i, tarefa in enumerate(tarefas, 1):
+        print(f"   Processando tarefa {i}: {tarefa}")
+        time.sleep(0.5)  # Simula tempo de processamento
+        resultados.append(f"Resultado_{i}")
+
+    tempo_total = time.time() - inicio
+    print(f"✅ Processamento concluído em {tempo_total:.2f}s")
+    print("⚠️  Ponto único de falha: se o mainframe falhar, tudo para!")
+    return resultados
+
+tarefas = ["Calcular folha de pagamento", "Processar vendas", "Gerar relatórios", "Backup de dados"]
+resultados_centralizados = sistema_centralizado(tarefas)
+
+# 2. SISTEMAS PARALELOS
+print("\n\n2. SISTEMAS PARALELOS")
+print("-" * 30)
+
+# 2.1 Sistema Fortemente Acoplado (Multiprocessing - núcleos compartilham memória)
+print("\n2.1 SISTEMA FORTEMENTE ACOPLADO")
+print("    (Processadores compartilham memória - como smartphone octa-core)")
+
+def processar_tarefa_paralela(tarefa_info):
+    """Processa uma tarefa em paralelo"""
+    tarefa, numero = tarefa_info
+    processo_id = os.getpid()
+    print(f"   🔄 Núcleo {numero} (PID:{processo_id}) processando: {tarefa}")
+    time.sleep(0.3)  # Simula processamento mais rápido
+    return f"Resultado_{numero}"
+
+def sistema_fortemente_acoplado(tarefas):
+    """Simula sistema com múltiplos núcleos compartilhando memória"""
+    print("🔗 Iniciando processamento em múltiplos núcleos...")
+    inicio = time.time()
+
+    # Usa multiprocessing para simular núcleos de CPU
+    tarefas_numeradas = [(tarefa, i+1) for i, tarefa in enumerate(tarefas)]
+
+    with multiprocessing.Pool(processes=4) as pool:  # 4 núcleos
+        resultados = pool.map(processar_tarefa_paralela, tarefas_numeradas)
+
+    tempo_total = time.time() - inicio
+    print(f"✅ Processamento paralelo concluído em {tempo_total:.2f}s")
+    print("💡 Vantagem: Múltiplos núcleos, mesma memória RAM compartilhada")
+    return resultados
+
+# Executa sistema fortemente acoplado
+if __name__ == '__main__':  # Necessário para multiprocessing
+    resultados_fortemente_acoplado = sistema_fortemente_acoplado(tarefas)
+
+# 2.2 Sistema Fracamente Acoplado (Threading - simula máquinas via rede)
+print("\n2.2 SISTEMA FRACAMENTE ACOPLADO")
+print("    (Máquinas conectadas via rede - sistemas distribuídos)")
+
+def maquina_na_rede(maquina_id, tarefa):
+    """Simula uma máquina conectada via rede processando uma tarefa"""
+    print(f"   🌐 Máquina {maquina_id} (via rede) processando: {tarefa}")
+    time.sleep(random.uniform(0.2, 0.6))  # Simula latência de rede variável
+    return f"Resultado_Maquina_{maquina_id}"
+
+def sistema_fracamente_acoplado(tarefas):
+    """Simula sistema distribuído com máquinas conectadas via rede"""
+    print("🌐 Iniciando processamento distribuído via rede...")
+    inicio = time.time()
+
+    # Usa threads para simular comunicação via rede
+    with ThreadPoolExecutor(max_workers=4) as executor:
+        # Submete tarefas para diferentes "máquinas" na rede
+        futuros = [executor.submit(maquina_na_rede, i+1, tarefa)
+                  for i, tarefa in enumerate(tarefas)]
+
+        # Coleta resultados
+        resultados = [futuro.result() for futuro in futuros]
+
+    tempo_total = time.time() - inicio
+    print(f"✅ Processamento distribuído concluído em {tempo_total:.2f}s")
+    print("💡 Vantagem: Escalável, pode adicionar máquinas facilmente")
+    print("⚠️  Desvantagem: Depende da rede, gerenciamento mais complexo")
+    return resultados
+
+resultados_fracamente_acoplado = sistema_fracamente_acoplado(tarefas)
+
+# COMPARAÇÃO DOS RESULTADOS
+print("\n\n" + "="*60)
+print("COMPARAÇÃO DOS SISTEMAS")
+print("="*60)
+
+print("\n📊 RESUMO EXECUTIVO:")
+print(f"• Sistema Centralizado: Processa sequencialmente, controle total")
+print(f"• Sistema Fortemente Acoplado: Paralelismo interno, mesma memória")
+print(f"• Sistema Fracamente Acoplado: Distribuído via rede, alta escalabilidade")
+
+print("\n🎯 APLICAÇÕES PRÁTICAS:")
+print("• Centralizado: Sistemas bancários críticos, mainframes")
+print("• Fortemente Acoplado: Smartphones, notebooks, servidores multi-core")
+print("• Fracamente Acoplado: Netflix, Google, Facebook (sistemas distribuídos)")
+
+print("\n✨ Demonstração concluída! Todos os conceitos foram executados.")</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: terminal/simulated output (the long console output you provided) -->
+      <section id="terminal-output" class="mb-5">
+        <h2 class="section-title">Saída de Simulação (Terminal)</h2>
+
+        <div
+          id="terminalOutput"
+          class="mb-3"
+          role="region"
+          aria-label="Saída do terminal"
+        >
+          <pre class="console-line console-system">
+============================================================
+DEMONSTRAÇÃO: CLASSIFICAÇÃO DOS SISTEMAS
+============================================================</pre
+          >
+
+          <pre class="console-line console-server">
+1. SISTEMA CENTRALIZADO
+------------------------------
+🖥️  Processando no mainframe central...
+   Processando tarefa 1: Calcular folha de pagamento
+   Processando tarefa 2: Processar vendas
+   Processando tarefa 3: Gerar relatórios
+   Processando tarefa 4: Backup de dados
+✅ Processamento concluído em 2.00s
+⚠️  Ponto único de falha: se o mainframe falhar, tudo para!</pre
+          >
+
+          <pre class="console-line console-system">
+2. SISTEMAS PARALELOS
+------------------------------</pre
+          >
+
+          <pre class="console-line console-server">
+2.1 SISTEMA FORTEMENTE ACOPLADO
+    (Processadores compartilham memória - como smartphone octa-core)
+🔗 Iniciando processamento em múltiplos núcleos...
+   🔄 Núcleo 4 (PID:334) processando: Backup de dados
+   🔄 Núcleo 3 (PID:332) processando: Gerar relatórios
+   🔄 Núcleo 2 (PID:333) processando: Processar vendas
+   🔄 Núcleo 1 (PID:331) processando: Calcular folha de pagamento
+
+✅ Processamento paralelo concluído em 0.42s
+💡 Vantagem: Múltiplos núcleos, mesma memória RAM compartilhada</pre
+          >
+
+          <pre class="console-line console-client">
+2.2 SISTEMA FRACAMENTE ACOPLADO
+    (Máquinas conectadas via rede - sistemas distribuídos)
+🌐 Iniciando processamento distribuído via rede...
+   🌐 Máquina 1 (via rede) processando: Calcular folha de pagamento
+   🌐 Máquina 2 (via rede) processando: Processar vendas
+   🌐 Máquina 3 (via rede) processando: Gerar relatórios
+   🌐 Máquina 4 (via rede) processando: Backup de dados
+✅ Processamento distribuído concluído em 0.35s
+💡 Vantagem: Escalável, pode adicionar máquinas facilmente
+⚠️  Desvantagem: Depende da rede, gerenciamento mais complexo</pre
+          >
+
+          <pre class="console-line console-system">
+============================================================
+COMPARAÇÃO DOS SISTEMAS
+============================================================
+
+📊 RESUMO EXECUTIVO:
+• Sistema Centralizado: Processa sequencialmente, controle total
+• Sistema Fortemente Acoplado: Paralelismo interno, mesma memória
+• Sistema Fracamente Acoplado: Distribuído via rede, alta escalabilidade
+
+🎯 APLICAÇÕES PRÁTICAS:
+• Centralizado: Sistemas bancários críticos, mainframes
+• Fortemente Acoplado: Smartphones, notebooks, servidores multi-core
+• Fracamente Acoplado: Netflix, Google, Facebook (sistemas distribuídos)
+
+✨ Demonstração concluída! Todos os conceitos foram executados.</pre
+          >
+        </div>
+
+        <p class="text-muted small">
+          Produtos pagos do Colab - Cancelar contratos
+        </p>
+      </section>
+
+      <!-- Section: Seção 2.1 objetivo -->
+      <section id="sistemas-distribuidos-2-1" class="mb-5">
+        <h2 class="section-title">
+          Seção 2.1 — Objetivos dos Sistemas Distribuídos
+        </h2>
+
+        <div class="card p-4 mb-3">
+          <p>
+            Um sistema distribuído é um conjunto de computadores independentes
+            que se apresenta a seus usuários como um sistema único e coerente.
+            (Tanenbaum; Steen, 2008)
+          </p>
+
+          <h5 class="mt-3">Existem três objetivos primordiais:</h5>
+          <ul>
+            <li>
+              <strong>Compartilhamento de Recursos:</strong> Acesso a bancos de
+              dados, links de rede e serviços entre nós; vantagem: economia;
+              desvantagem: múltiplos pontos de ataque.
+            </li>
+            <li>
+              <strong>Confiabilidade:</strong> Relacionada ao Teorema CAP —
+              Consistência, Disponibilidade e Resiliência; impossível garantir
+              os três ao mesmo tempo em sua totalidade.
+            </li>
+            <li>
+              <strong>Desempenho:</strong> Sistemas distribuídos aumentam
+              capacidade por múltiplas instâncias.
+            </li>
+          </ul>
+
+          <h5 class="mt-3">Outros Conceitos</h5>
+          <p>
+            <strong>Granularidade:</strong> Capacidade do software ser separado
+            em métodos/funções para execução paralela.
+          </p>
+
+          <h5 class="mt-3">Desafios e Obstáculos</h5>
+          <ul>
+            <li>Abertura</li>
+            <li>Concorrência</li>
+            <li>Escalabilidade</li>
+            <li>Heterogeneidade</li>
+            <li>Segurança</li>
+            <li>Tolerância a Falhas / Resiliência</li>
+            <li>Transparência</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -38,6 +38,8 @@ body {
 .navbar {
   background-color: var(--bs-darker) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  position: fixed;
+  width: 100%;
 }
 .navbar .navbar-brand {
   color: var(--bs-body-color);
